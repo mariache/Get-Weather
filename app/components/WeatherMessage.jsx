@@ -15,9 +15,9 @@ var React =require('react');
 //     }
 // });
 
-    //var WeatherMessage = (props) => {
+//var WeatherMessage = (props) => {
     //var {location, temp} = props;
-var WeatherMessage = ({temp,location})
+var WeatherMessage = ({temp,location})=> {
     return (
         <div>
             <h3>It's it {temp} in {location}</h3>
