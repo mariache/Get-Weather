@@ -18,7 +18,6 @@ var Nav = React.createClass({
     onSearch: function (e) {
         e.preventDefault();
         alert('Not yet wired up');
-
     },
 
     render: function(){
@@ -44,7 +43,7 @@ var Nav = React.createClass({
                     <form onSubmit={this.onSearch}>
                         <ul className="menu">
                             <li>
-                                <input type="search" placeholder="search weathe"/>
+                                <input type="search" placeholder="search weather"/>
                             </li>
                             <li>
                                 <input type="submit" className="button" value="Get Weather"/>
