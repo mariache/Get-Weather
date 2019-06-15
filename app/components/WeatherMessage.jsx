@@ -1,4 +1,4 @@
-var React =require('react');
+var React = require("react");
 
 // var WeatherMessage = React.createClass({
 //     render: function() {
@@ -16,13 +16,15 @@ var React =require('react');
 // });
 
 //var WeatherMessage = (props) => {
-    //var {location, temp} = props;
-var WeatherMessage = ({temp,location})=> {
-    return (
-        <div>
-            <h3 className="text-center">It's it {temp} ℃ in {location} now</h3>
-        </div>
-    )
+//var {location, temp} = props;
+var WeatherMessage = ({ temp, location }) => {
+  return (
+    <div>
+      <h3 className="text-center">
+        It's it {temp} ℃ in {location} now
+      </h3>
+    </div>
+  );
 };
 
-module.exports = WeatherMessage;
+export default WeatherMessage;
