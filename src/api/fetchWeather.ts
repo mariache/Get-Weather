@@ -1,7 +1,7 @@
-import { axios } from "axios";
+import axios from "axios";
 const BASE_URL = "http://api.openweathermap.org/data/2.5/weather";
 
-export const fetchWeather = async (query) => {
+export const fetchWeather = async (query: any) => {
   const { data } = await axios.get(BASE_URL, {
     params: {
       q: query,
