@@ -1,37 +1,36 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
 
-import "./index.css";
-import { fetchWeather } from "./api/fetchWeather";
-import ReactDOM from "react-dom";
+import { RootState } from "./store";
+import Search from "./components/Search";
+import Alert from "./components/Alert";
+import Weather from "./components/Weather";
+import { setAlert } from "./store/actions/alertActions";
+import { setError } from "./store/actions/weatherActions";
 
 const App: FC = () => {
-  const [query, setQuery] = useState<string>("");
-  const [weather, setWeather] = useState<string>("");
-  const onSearch = async (e) => {
-    if (e.key === "Enter") {
-      const data = await fetchWeather(query);
-      setWeather(data);
-      setQuery("");
-    }
-  };
+  const dispatch = useDispatch();
+  const weatherData = useSelector((state: RootState) => state.weather.data);
+  const loading = useSelector((state: RootState) => state.weather.loading);
+  const error = useSelector((state: RootState) => state.weather.error);
+  const alertMsg = useSelector((state: RootState) => state.alert.message);
 
   return (
-    console.log(weather),
-    (
-      <div>
-        <input
-          type="text"
-          name=""
-          id=""
-          className="search"
-          placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyPress={onSearch}
-        />
-      </div>
-    )
+    <div className="has-text-centered">
+      <Search title="Enter city name and press search button" />
+      {loading ? (
+        <h2 className="is-size-3 py-2">Loading...</h2>
+      ) : (
+        weatherData && <Weather data={weatherData} />
+      )}
+
+      {alertMsg && (
+        <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />
+      )}
+      {error && <Alert message={error} onClose={() => dispatch(setError())} />}
+    </div>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
