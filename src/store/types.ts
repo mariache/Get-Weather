@@ -1,3 +1,6 @@
+export const SET_ERROR = "SET_ERROR";
+export const SET_ALERT = "SET_ALERT";
+
 export interface Weather {
   description: string;
   icon: string;
@@ -51,4 +54,23 @@ export interface WeatherState {
   data: WeatherData | null;
   loading: boolean;
   error: string;
+}
+
+interface SetErrorAction {
+  type: typeof SET_ERROR;
+  payload: string;
+}
+
+export type WeatherAction =
+  | GetWeatherAction
+  | SetLoadingAction
+  | SetErrorAction;
+
+export interface AlertAction {
+  type: typeof SET_ALERT;
+  payload: string;
+}
+
+export interface AlertState {
+  message: string;
 }
